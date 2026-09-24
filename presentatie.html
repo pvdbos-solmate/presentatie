@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Van vrachtschip naar containers - Onze nieuwe software</title>
+<style>
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif;
+    background: #072b57; color: #e6edf3; overflow: hidden;
+    cursor: pointer;
+  }
+  .slide {
+    display: none; height: 100vh; width: 100vw;
+    padding: 50px 90px 70px 90px; flex-direction: column; justify-content: center;
+    background: linear-gradient(135deg, #072b57 0%, #0a3a70 100%);
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; animation: fadeInSlide 0.5s ease; }
+
+  @keyframes fadeInSlide {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  h1 { font-size: 4.4em; font-weight: 800; color: #8fd13f; margin: 0 0 0.3em 0; line-height: 1.15; }
+  h2 { font-size: 3.3em; font-weight: 700; color: #8fd13f; margin: 0 0 0.5em 0; border-bottom: 4px solid #8fd13f; padding-bottom: 16px; }
+  h3 { color: #8fd13f; font-size: 1.9em; font-weight: 600; margin: 0 0 12px 0; }
+  p, li { font-size: 1.8em; line-height: 1.5; color: #dce6f2; }
+  .subtitle { font-size: 2.1em; color: #a8c0dc; margin: 0; }
+  .small { font-size: 1.3em; color: #a8c0dc; }
+  .badge {
+    display: inline-block; padding: 8px 22px; border-radius: 24px;
+    background: #8fd13f; color: #072b57; font-weight: 700; font-size: 0.6em; margin-right: 10px;
+  }
+  .badge.new { background: #8fd13f; }
+  .badge.old { background: #7891ac; }
+  .grid { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+  .box {
+    flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px; padding: 26px 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .box.old { border-color: #7891ac; }
+  .box.new { border-color: #8fd13f; }
+  .box .icon { font-size: 2.2em; display: block; margin-bottom: 10px; }
+  .box h3 { text-align: center; font-size: 1.5em; }
+  .box p, .box ul { font-size: 0.9em; margin: 0; text-align: left; }
+  .box ul { padding-left: 26px; margin-top: 6px; }
+  .box li { font-size: 1em; margin-bottom: 6px; }
+  .box .disclaimer { font-size: 0.9em; color: #f2c94c; font-style: italic; margin-top: 8px; }
+
+  /* Volledig scherm variant voor de losse "Wat betekent dit voor ons"-dia's */
+  .single-box {
+    flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px; padding: 20px 50px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .single-box .icon-big { font-size: 3.2em; text-align: center; display: block; margin-bottom: 6px; }
+  .single-box h3 { text-align: center; font-size: 2.4em; margin-bottom: 20px; }
+  .single-box ul { padding-left: 40px; margin-top: 0; }
+  .single-box li { font-size: 1.25em; margin-bottom: 16px; }
+  .single-box .disclaimer { font-size: 1em; color: #f2c94c; font-style: italic; margin-top: 18px; text-align: left; }
+
+  .flow { display: flex; align-items: center; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+  .flowbox {
+    background: rgba(255,255,255,0.06); border: 3px solid #8fd13f; border-radius: 12px;
+    padding: 22px 30px; text-align: center; font-size: 1.5em; min-width: 180px;
+  }
+  .arrow { font-size: 2.4em; color: #8fd13f; }
+  .screenshot-placeholder {
+    border: 2px dashed #8fd13f; border-radius: 12px; padding: 34px;
+    text-align: center; color: #8fd13f; margin-top: 18px; font-style: italic; font-size: 1.4em;
+  }
+  .engine-card {
+    background: rgba(255,255,255,0.06); border-radius: 14px; padding: 20px 26px; margin-bottom: 14px;
+    border-left: 8px solid #8fd13f;
+  }
+  .engine-card.new { border-left-color: #8fd13f; }
+  .test-row { display: flex; gap: 28px; margin-top: 26px; }
+  .test-card {
+    flex: 1; background: rgba(255,255,255,0.06); border-radius: 14px; padding: 34px; text-align: center;
+    border-top: 6px solid #8fd13f;
+  }
+  .test-card .icon { font-size: 3.4em; display: block; margin-bottom: 14px; }
+  .test-card h3 { font-size: 2em; }
+  .test-card p { font-size: 1.35em; }
+  .nav { position: fixed; bottom: 26px; right: 30px; z-index: 10; }
+  .nav button {
+    background: #8fd13f; color: #072b57; border: none; border-radius: 6px; font-family: inherit;
+    padding: 9px 16px; font-size: 0.95em; font-weight: 600; margin-left: 8px; cursor: pointer;
+  }
+  .nav button:hover { background: #a3dc5f; }
+  .brand-logo {
+    position: fixed; bottom: 24px; left: 20px; height: 34px; opacity: 0.9; z-index: 10;
+  }
+  .center { text-align: center; }
+  ul { padding-left: 34px; margin-top: 12px; }
+  li { margin-bottom: 12px; }
+  .highlight { color: #8fd13f; font-weight: 700; }
+
+  /* Progress bar onderin */
+  .progress-track {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 5px;
+    background: rgba(255,255,255,0.08); z-index: 20;
+  }
+  .progress-fill {
+    height: 100%; width: 0%; background: #8fd13f;
+    transition: width 0.4s ease;
+  }
+
+  /* Architectuur dia styling */
+  .arch-wrap { position: relative; margin-top: 10px; flex: 1; }
+  .arch-diagram {
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    background: rgba(0,0,0,0.2); border-radius: 18px; padding: 34px 26px; box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    height: 100%;
+  }
+  .arch-col { display: flex; flex-direction: column; gap: 16px; align-items: center; justify-content: center; }
+  .arch-node {
+    border-radius: 16px; padding: 18px 22px; text-align: center; font-weight: 700;
+    font-size: 1.3em; min-width: 170px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .arch-node.engine {
+    display: flex; align-items: center; gap: 12px; text-align: left; min-width: 260px;
+  }
+  .arch-node.engine .engine-icon { font-size: 1.3em; flex-shrink: 0; }
+  /* Kleuren omgewisseld: Bank Statement API krijgt nu de "sync"-kleur en vice versa */
+  .arch-node.api { background: linear-gradient(135deg,#ffe08a,#f2c94c); color:#072b57; }
+  .arch-node.blazor { background: linear-gradient(135deg,#a8c0dc,#5b8ac2); color:#072b57; }
+  .arch-node.sync { background: linear-gradient(135deg,#c7e88a,#8fd13f); color:#072b57; }
+  .arch-node.engine { background: linear-gradient(135deg,#cfe0f2,#8fb8e0); color:#072b57; }
+  .arch-node.engine.done { background: linear-gradient(135deg,#c7e88a,#8fd13f); }
+  .arch-db {
+    background: radial-gradient(circle at 30% 30%, #f0d9a8, #d2a24c);
+    color:#3a2a00; border-radius: 50% / 20%; width: 220px; height: 270px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-weight:700; font-size: 1.4em; padding: 26px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+  .arch-flow-arrow { font-size: 2.2em; color: #8fd13f; }
+  .callout-row { display: flex; gap: 22px; margin-top: 28px; }
+  .callout {
+    flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-left: 6px solid #8fd13f;
+    border-radius: 12px; padding: 20px 24px; font-size: 1.4em;
+  }
+  .callout b { color: #8fd13f; }
+
+  /* Fullscreen screenshot dia (blijft ongewijzigd qua tekstgrootte) */
+  .shot-slide h2 { display: flex; align-items: center; gap: 16px; font-size: 2.6em; }
+  .shot-full {
+    flex: 1; border: 2px solid rgba(255,255,255,0.2); border-radius: 14px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05);
+    margin-top: 12px; min-height: 0; position: relative;
+  }
+  .shot-full img { width: 100%; height: 100%; object-fit: contain; }
+  .shot-full .ph { color: #8fd13f; font-style: italic; padding: 20px; text-align: center; font-size: 1.6em; }
+
+  /* Wipe-reveal overgang: alleen bij het "nieuw"-scherm van een paar (1,5 seconden) */
+  .shot-slide.reveal-in .shot-full::after {
+    content: "";
+    position: absolute; top: 0; left: 0; height: 100%; width: 100%;
+    background: linear-gradient(90deg, #072b57 0%, #072b57 100%);
+    animation: wipeReveal 1.5s ease forwards;
+    pointer-events: none;
+  }
+  @keyframes wipeReveal {
+    from { clip-path: inset(0 0 0 0); }
+    to   { clip-path: inset(0 0 0 100%); }
+  }
+  .shot-slide.reveal-in h2 .badge.new {
+    animation: badgePop 0.5s ease 1.1s backwards;
+  }
+  @keyframes badgePop {
+    from { opacity: 0; transform: scale(0.5) rotate(-8deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  /* Teamfoto's op de afsluitingsdia */
+  .team-row {
+    display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex: 1; align-items: center;
+  }
+  .team-card {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    opacity: 0; transform: scale(0.5) translateY(30px) rotate(-6deg);
+    animation: teamPopIn 0.7s ease forwards;
+  }
+  .team-card img, .team-ph {
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    border: 4px solid #8fd13f; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .team-ph {
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08); font-size: 3em;
+  }
+  .team-name { font-size: 1.3em; font-weight: 600; color: #8fd13f; margin: 0; }
+
+  @keyframes teamPopIn {
+    from { opacity: 0; transform: scale(0.5) translateY(30px) rotate(-6deg); }
+    to   { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITEL -->
+<div class="slide active">
+  <h1>🚀 Van vrachtschip naar containers</h1>
+  <p class="subtitle">Onze nieuwe software & website — een frisse, moderne basis</p>
+  <p style="margin-top:60px; color:#a8c0dc; font-size:1.6em;">Gepresenteerd door: Pascal van den Bos — Developer</p>
+</div>
+
+<!-- SLIDE 2: OPENING / WAARDERING -->
+<div class="slide">
+  <h2>Waar we vandaan komen</h2>
+  <p>Onze huidige applicaties — deels in VB.NET — hebben jarenlang hun werk goed gedaan en doen dat nog steeds.</p>
+  <p>Maar ze worden opgeleverd als <span class="highlight">één groot geheel</span>: alles zit aan elkaar vast.</p>
+  <ul>
+    <li>Een kleine aanpassing aan één onderdeel raakt al snel het geheel</li>
+    <li>Bij uitrol bouwen we in feite één enorm <span class="highlight">vrachtschip</span>, vol met alles aan boord</li>
+    <li>Voor elke klant moeten we dat schip opnieuw beladen: alle instellingen handmatig verzamelen en inregelen — dat kost tijd</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: DE NIEUWE SITUATIE (vrachtschip -> containers) -->
+<div class="slide">
+  <h2>🚢 → 📦 Waar we naartoe bouwen</h2>
+  <p>In de nieuwe opzet bouwen we onze containers als <span class="highlight">vaste, herbruikbare sjablonen</span> — precies één keer gebouwd, goed getest.</p>
+  <ul>
+    <li>Die sjablonen kunnen we simpelweg <span class="highlight">kopiëren/klonen</span> voor elke klant</li>
+    <li>Klantspecifieke instellingen worden niet meer ingebakken, maar <span class="highlight">van buitenaf gevoerd</span></li>
+    <li>Resultaat: snellere uitrol, minder handwerk, eenvoudiger onderhoud</li>
+  </ul>
+</div>
+
+<!-- SLIDE 4: DE SPELERS IN DIT VERHAAL -->
+<div class="slide">
+  <h2>De spelers in dit verhaal 🚢</h2>
+  <ul>
+    <li>🏢 <b>Unit4 CODA</b> — extern pakhuis waar onze financiële gegevens liggen</li>
+    <li>🔌 Tot nu toe: een <span class="highlight">vaste kade-lijn</span> naar dat pakhuis — deze wordt (om diverse redenen) binnenkort <span class="highlight">verbroken</span></li>
+    <li>🌐 <b>Blazor-website</b> — ons loket, waar iedereen mee werkt (eigen container)</li>
+    <li>🚚 <b>Sync Engine</b> — onze eigen vrachtwagen die zelf de gegevens ophaalt zodra de lijn wegvalt</li>
+    <li>📦 In totaal <b>12 containers</b>: 10 met verwerkings-engines, 1 met de Blazor FrontEnd en 1 met de Bank Statement API</li>
+    <li>✅ Twee engines zijn al vervangen door nieuwere machines: <b>BSPM Read Engine</b> en <b>Filter Engine</b>. <b>Calculate Match Engine</b> volgt binnenkort</li>
+  </ul>
+</div>
+
+<!-- SLIDE 5: DE FABRIEKJES ANALOGIE -->
+<div class="slide">
+  <h2>🏭 Elke container is een klein fabriekje</h2>
+  <p>Elke container is niet zomaar een doos — er zit een <span class="highlight">klein fabriekje</span> in. Dat fabriekje doet één ding, en doet dat goed.</p>
+  <p>Maar de fabriekjes praten <b>niet rechtstreeks</b> met elkaar. Ze zetten hun halffabricaat neer in een <span class="highlight">groot magazijn</span> — de Crescendo database.</p>
+  <p>Daar ligt het klaar totdat het volgende fabriekje het oppikt, ermee verder werkt, en het resultaat weer terugzet in het magazijn.</p>
+</div>
+
+<!-- SLIDE 6: ARCHITECTUUR DIAGRAM -->
+<div class="slide">
+  <h2>Zo ziet het eruit</h2>
+  <div class="arch-wrap">
+    <div class="arch-diagram">
+      <div class="arch-col">
+        <div class="arch-node api">🏦 Bank Statement API</div>
+        <div class="arch-node blazor">🌐 Blazor<br>(FrontEnd)</div>
+        <div class="arch-node sync">🔄 Sync</div>
+      </div>
+      <div class="arch-flow-arrow">→</div>
+      <div class="arch-db">🏭 Crescendo<br>Database<br><span style="font-weight:400;font-size:0.8em;">(het magazijn)</span></div>
+      <div class="arch-flow-arrow">→</div>
+      <div class="arch-col">
+        <div class="arch-node engine done"><span class="engine-icon">🏭</span> BSPM Read Engine ✅</div>
+        <div class="arch-node engine done"><span class="engine-icon">🏭</span> Filter Engine ✅</div>
+        <div class="arch-node engine"><span class="engine-icon">🏭</span> Calculate Match Engine 🔜</div>
+        <div class="arch-node engine"><span class="engine-icon">🏭</span> Doc Post Engine</div>
+        <div class="arch-node engine"><span class="engine-icon">🏭</span> Matching / Undo / Update (en overige engines)</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout-row">
+    <div class="callout"><b>1. Eén gedeeld magazijn</b><br>Alles praat via de Crescendo database — geen directe koppelingen onderling, dat maakt vervanging veilig.</div>
+    <div class="callout"><b>2. Eén voor één vervangen</b><br>Omdat alles via dezelfde database loopt, draaien oude en nieuwe engines gewoon naast elkaar tijdens de overgang.</div>
+    <div class="callout"><b>3. Geen live gegraaf meer in CODA</b><br>Voorheen: joins over de lijn tussen interne en externe data → traag. Nu: alles staat lokaal klaar dankzij Sync.</div>
+  </div>
+</div>
+
+<!-- SLIDE 7: SYNC ENGINE DETAIL -->
+<div class="slide">
+  <h2>🔄 Waarom de Sync Engine?</h2>
+  <p><strong>Vroeger:</strong> gegevens werden live opgehaald uit de externe CODA-database via een vaste lijn — met joins tussen interne en externe data. Dat kan traag zijn en is afhankelijk van het netwerk.</p>
+  <p><strong>Nu:</strong> we houden een eigen, lokale kopie van de benodigde gegevens bij, netjes gesynchroniseerd — en klaar voor als de lijn ooit wegvalt.</p>
+  <ul>
+    <li>⚡ Sneller — gegevens staan al lokaal klaar</li>
+    <li>📦 Overzichtelijker — alles bij elkaar in plaats van verspreid</li>
+    <li>🛡️ Stabieler — minder afhankelijk van de live-koppeling</li>
+  </ul>
+</div>
+
+<!-- ===================== SCREENSHOTS (1 per dia, oud -> nieuw met wipe, 1,5s) ===================== -->
+
+<!-- SLIDE 8: INTRO SCREENSHOTS -->
+<div class="slide">
+  <h2>Even kijken: oud vs. nieuw 👀</h2>
+  <p>Laten we een aantal schermen naast elkaar zetten. Steeds eerst het oude scherm, direct gevolgd door hetzelfde scherm in de nieuwe applicatie.</p>
+</div>
+
+<!-- Scherm: Navigatie / hoofdmenu -->
+<div class="slide shot-slide" data-pair="4" data-pair-role="old">
+  <h2>Navigatie &amp; hoofdmenu <span class="badge old">OUD</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot CrescendoWeb 4.png" alt="Oud - hoofdmenu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 4<br>(hoofdmenu, oud)</div>
+  </div>
+</div>
+<div class="slide shot-slide" data-pair="4" data-pair-role="new">
+  <h2>Navigatie &amp; hoofdmenu <span class="badge new">NIEUW</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor 4.png" alt="Nieuw - navigatiemenu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor 4<br>(navigatiemenu, nieuw)</div>
+  </div>
+</div>
+
+<!-- Scherm: Bank Statement Masters -->
+<div class="slide shot-slide" data-pair="1" data-pair-role="old">
+  <h2>Bank Statement Masters <span class="badge old">OUD</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot CrescendoWeb 1.png" alt="Oud - Bank Statement" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 1<br>(Bank Statement, oud)</div>
+  </div>
+</div>
+<div class="slide shot-slide" data-pair="1" data-pair-role="new">
+  <h2>Bank Statement Masters <span class="badge new">NIEUW</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor 1.png" alt="Nieuw - Bank Statement" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor 1<br>(Bank Statement, nieuw)</div>
+  </div>
+</div>
+
+<!-- Scherm: Filter Rules overzicht -->
+<div class="slide shot-slide" data-pair="3" data-pair-role="old">
+  <h2>Filter Rules — overzicht <span class="badge old">OUD</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot CrescendoWeb 3.png" alt="Oud - Filter Rules overzicht" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 3<br>(Filter Rules overzicht, oud)</div>
+  </div>
+</div>
+<div class="slide shot-slide" data-pair="3" data-pair-role="new">
+  <h2>Filter Rules — overzicht <span class="badge new">NIEUW</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor 3.png" alt="Nieuw - Filter Rules overzicht" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor 3<br>(Filter Rules overzicht, nieuw)</div>
+  </div>
+</div>
+
+<!-- Scherm: Filter Rules detail -->
+<div class="slide shot-slide" data-pair="2" data-pair-role="old">
+  <h2>Filter Rules — detail <span class="badge old">OUD</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot CrescendoWeb 2.png" alt="Oud - Filter Rules detail" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 2<br>(Filter Rules detail, oud)</div>
+  </div>
+</div>
+<div class="slide shot-slide" data-pair="2" data-pair-role="new">
+  <h2>Filter Rules — detail <span class="badge new">NIEUW</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor 2.png" alt="Nieuw - Filter Rules detail" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor 2<br>(Filter Rules detail, nieuw)</div>
+  </div>
+</div>
+
+<!-- Scherm: Selector Masters (leeg) -->
+<div class="slide shot-slide" data-pair="5" data-pair-role="old">
+  <h2>Selector Masters <span class="badge old">OUD</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot CrescendoWeb 5.png" alt="Oud - Selector Masters" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 5<br>(Selector Masters, oud)</div>
+  </div>
+</div>
+<div class="slide shot-slide" data-pair="5" data-pair-role="new">
+  <h2>Selector Masters <span class="badge new">NIEUW</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor 5.png" alt="Nieuw - Selector Masters" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor 5<br>(Selector Masters, nieuw)</div>
+  </div>
+</div>
+
+<!-- Scherm: Selector Masters (ingevuld) -->
+<div class="slide shot-slide" data-pair="6" data-pair-role="old">
+  <h2>Selector Masters — ingevuld <span class="badge old">OUD</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot CrescendoWeb 6.png" alt="Oud - Selector Masters ingevuld" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 6<br>(Selector Masters ingevuld, oud)</div>
+  </div>
+</div>
+<div class="slide shot-slide" data-pair="6" data-pair-role="new">
+  <h2>Selector Masters — ingevuld <span class="badge new">NIEUW</span></h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor 6.png" alt="Nieuw - Selector Masters ingevuld" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor 6<br>(Selector Masters ingevuld, nieuw)</div>
+  </div>
+</div>
+
+<!-- SLIDE: Extra mogelijkheden intro -->
+<div class="slide">
+  <h2>En er is meer 🎁</h2>
+  <p>Naast een moderne uitstraling heeft de nieuwe website ook praktische extra's, die dagelijks gebruik prettiger maken.</p>
+</div>
+
+<!-- SLIDE: Extra - Dark mode -->
+<div class="slide shot-slide">
+  <h2>🌙 Dark mode</h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor Extra 1.png" alt="Dark mode" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor Extra 1<br>(dark mode)</div>
+  </div>
+</div>
+
+<!-- SLIDE: Extra - Inklapbaar menu (ingeklapt) -->
+<div class="slide shot-slide" data-pair="7" data-pair-role="old">
+  <h2>📐 Inklapbaar menu</h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor Extra 2.png" alt="Ingeklapt menu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor Extra 2<br>(ingeklapt menu)</div>
+  </div>
+</div>
+
+<!-- SLIDE: Extra - Inklapbaar menu (animatie) -->
+<div class="slide shot-slide" data-pair="7" data-pair-role="new">
+  <h2>📐 Inklapbaar menu — vloeiende animatie</h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor Extra 3.png" alt="Menu animatie" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor Extra 3<br>(menu animatie)</div>
+  </div>
+</div>
+
+<!-- SLIDE: Extra - Modal edit -->
+<div class="slide shot-slide">
+  <h2>🪟 Bewerken via een popup</h2>
+  <div class="shot-full">
+    <img src="Screenshot Blazor Extra 4.png" alt="Modal edit" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="ph" style="display:none;">📷 Screenshot Blazor Extra 4<br>(modal edit)</div>
+  </div>
+</div>
+
+<!-- ===================== TESTEN (scheepswerf-analogie) ===================== -->
+
+<!-- TESTEN INTRO -->
+<div class="slide">
+  <h2>🚢 Hoe weten we dat het schip goed de zee op kan?</h2>
+  <p>Op een scheepswerf wordt niet pas bij de proefvaart gekeken of alles goed zit — er wordt op <span class="highlight">drie niveaus</span> gekeurd, van klein onderdeel tot complete proefvaart.</p>
+</div>
+
+<!-- DE 3 TESTEN -->
+<div class="slide">
+  <h2>Onze drie soorten tests</h2>
+  <div class="test-row">
+    <div class="test-card">
+      <span class="icon">🚪</span>
+      <h3>Unit Test</h3>
+      <p>De controle van <strong>één luik</strong>: gaat het goed open en dicht? En is het, eenmaal dicht, ook echt <strong>waterdicht</strong>?<br><small>Klein, geïsoleerd onderdeel, met precies de eigenschappen die het moet hebben.</small></p>
+    </div>
+    <div class="test-card">
+      <span class="icon">⚙️</span>
+      <h3>Integration Test</h3>
+      <p>Testen of meerdere van dit soort onderdelen <strong>samen</strong> goed functioneren.<br><small>Werkt dit luik goed samen met het compartiment erachter?</small></p>
+    </div>
+    <div class="test-card">
+      <span class="icon">⚓</span>
+      <h3>Scenario Test</h3>
+      <p>De <strong>proefvaart</strong>.<br><small>Het hele schip de zee op, precies zoals het straks bij de klant echt gebruikt wordt.</small></p>
+    </div>
+  </div>
+</div>
+
+<!-- GEAUTOMATISEERD, INCREMENTEEL, VIER-OGEN -->
+<div class="slide">
+  <h2>🤖 Geautomatiseerd, in kleine stappen</h2>
+  <p>Onze tests zijn zoveel mogelijk <span class="highlight">geautomatiseerd</span> en gaan vanzelf af zodra we een stukje software opleveren.</p>
+  <ul>
+    <li>We leveren in <span class="highlight">kleine, incrementele brokken</span> op — geen grote big-bang releases</li>
+    <li>Elke wijziging wordt bekeken door <span class="highlight">minimaal één andere developer</span>, ook vanuit onze <span class="highlight">SOC1</span>-verplichtingen</li>
+    <li>Dat vier-ogen-principe + geautomatiseerde tests vormen samen onze eerste verdedigingslinie</li>
+  </ul>
+</div>
+
+<!-- SOLIDE BASIS VOOR DE TOEKOMST -->
+<div class="slide">
+  <h2>🏗️ Een solide basis voor de toekomst</h2>
+  <p>Deze automatisering verhoogt de betrouwbaarheid van alles wat we nu toevoegen, en legt een <span class="highlight">solide fundament</span> voor later.</p>
+  <ul>
+    <li>Zodra alle engines zijn omgezet, volgt een grote <span class="highlight">refactor-slag</span> — de tests vangen dan onbedoelde bijeffecten op</li>
+    <li>Omwille van tijd en doorloop maken we soms keuzes waar we later op terugkomen — ook als het straks écht in productie draait</li>
+    <li>Eerste doel: alles kunnen wat de oude engines ook konden — tenzij iets écht overbodig of zeer klantspecifiek is</li>
+    <li>Steeds met <span class="highlight">backward compatibility</span> in gedachten, en de oude engines <span class="highlight">één voor één</span> vervangen</li>
+  </ul>
+</div>
+
+<!-- AUTOMATISCH VS HANDMATIG TESTEN -->
+<div class="slide">
+  <h2>⚖️ Automatisch vs. handmatig testen</h2>
+  <p>Automatisch testen verlaagt de tijd die we aan <span class="highlight">handmatig testen</span> kwijt zijn — dat hoeft nu minder frequent.</p>
+  <ul>
+    <li>Het is <span class="highlight">(nog) geen vervanging</span> van handmatig testen: veel kennis zit nog in de hoofden van mensen, en niet alles is al geautomatiseerd</li>
+    <li>Het schrijven van betrouwbare tests kost ook tijd — tijd die een developer dan niet aan nieuwe features besteedt</li>
+    <li>Een bewuste balans, geen wondermiddel</li>
+  </ul>
+</div>
+
+<!-- WAT BETEKENT DIT VOOR ONS — 4 losse dia's -->
+
+<div class="slide">
+  <h2>Wat betekent dit voor ons?</h2>
+  <div class="single-box">
+    <span class="icon-big">💼</span>
+    <h3>Sales &amp; Management</h3>
+    <ul>
+      <li>Developers hoeven zich niet meer bezig te houden met onderhoud van oude, verweven onderdelen — er kan <b>gericht</b> verbeterd of uitgebreid worden in één specifiek onderdeel, zonder de rest te raken</li>
+      <li>Het doorknippen van de vaste lijn met Unit4 CODA maakt ons <b>minder afhankelijk</b> van een andere partij — meer grip in eigen hand</li>
+      <li>Dit betekent ook een <b>voorspelbaardere roadmap</b> richting klanten — een verbetering vragen voor bijvoorbeeld alleen de Filter Engine hoeft niet meer te wachten op de rest van het systeem</li>
+    </ul>
+    <p class="disclaimer">Disclaimer: het verwerken van data (via Sync) geeft op zichzelf weer andere uitdagingen. De communicatie naar Unit4 heeft momenteel bekende performance issues.</p>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Wat betekent dit voor ons?</h2>
+  <div class="single-box">
+    <span class="icon-big">🧑‍💻</span>
+    <h3>Functioneel consultants</h3>
+    <ul>
+      <li>Een <b>moderne webapplicatie</b>: minder klikken, overzichtelijker schermen</li>
+      <li>Minder star vastgehouden aan het originele ontwerp en gebruik van Unit4 — meer ruimte voor een prettige, eigen gebruikerservaring</li>
+      <li>Ook de (eind)gebruikers zullen het nieuwe ontwerp als <b>prettiger ervaren</b> — het ziet er frisser en moderner uit, en sluit beter aan bij wat ze in het dagelijks leven van andere apps gewend zijn</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Wat betekent dit voor ons?</h2>
+  <div class="single-box">
+    <span class="icon-big">🏗️</span>
+    <h3>Technisch applicatiebeheer</h3>
+    <ul>
+      <li>Nu: het samenstellen van een klant-omgeving duurt lang — te vergelijken met het <b>opnieuw beladen van een heel vrachtschip</b> per klant</li>
+      <li>Straks: onze set containers, als vaste sjablonen simpelweg <b>gekopieerd/gekloond</b>, met instellingen die er van buitenaf worden ingevoerd</li>
+      <li>Resultaat: veel <b>kortere doorlooptijden</b> bij het uitrollen naar klanten — en meer ruimte om zich te richten op <b>waarde toevoegen</b> bij de klant, in plaats van tijd te verliezen aan handmatig samenstellen</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Wat betekent dit voor ons?</h2>
+  <div class="single-box">
+    <span class="icon-big">👨‍💻</span>
+    <h3>Techniek / Developers</h3>
+    <ul>
+      <li>Kleiner en <b>modulair</b> = sneller ontwikkelen, minder gedoe</li>
+      <li>Bij een probleem is meteen duidelijk <b>in welke container ("fabriek")</b> het misgaat — veel minder zoekwerk</li>
+      <li>Aanpassingen zijn te doen <b>zonder dat iets anders omvalt</b></li>
+      <li>In combinatie met geautomatiseerde tests: sneller zekerheid dat alles nog werkt na een wijziging</li>
+    </ul>
+  </div>
+</div>
+
+<!-- AFSLUITING -->
+<div class="slide" id="finalSlide">
+  <h2 class="center">Bedankt voor jullie aandacht! 🎉</h2>
+  <p class="center" style="margin-bottom:10px;">Deze nieuwe applicaties zijn mede mogelijk gemaakt door:</p>
+  <div class="team-row">
+    <div class="team-card" style="animation-delay:0.2s;">
+      <img src="Team - Collin.png" alt="Collin" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="team-ph" style="display:none;">📷</div>
+      <p class="team-name">Collin</p>
+    </div>
+    <div class="team-card" style="animation-delay:0.6s;">
+      <img src="Team - Louis.png" alt="Louis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="team-ph" style="display:none;">📷</div>
+      <p class="team-name">Louis</p>
+    </div>
+    <div class="team-card" style="animation-delay:1.0s;">
+      <img src="Team - Nick.png" alt="Nick" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="team-ph" style="display:none;">📷</div>
+      <p class="team-name">Nick</p>
+    </div>
+    <div class="team-card" style="animation-delay:1.4s;">
+      <img src="Team - Pascal.png" alt="Pascal" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="team-ph" style="display:none;">📷</div>
+      <p class="team-name">Pascal</p>
+    </div>
+  </div>
+</div>
+
+<img class="brand-logo" src="solmate-logo.png" alt="Solmate">
+
+<div class="nav">
+  <button onclick="prevSlide(); event.stopPropagation();">⬅ Vorige</button>
+  <button onclick="nextSlide(); event.stopPropagation();">Volgende ➡</button>
+</div>
+
+<div class="progress-track">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showSlide(i) {
+    const outgoing = slides[current];
+    outgoing.classList.remove('active');
+    outgoing.classList.remove('reveal-in');
+
+    current = (i + slides.length) % slides.length;
+    const incoming = slides[current];
+
+    // Detecteer of dit een "nieuw"-scherm is dat hoort bij het vorige "oud"-scherm
+    const pair = incoming.dataset.pair;
+    const role = incoming.dataset.pairRole;
+    if (pair && role === 'new' && outgoing.dataset.pair === pair && outgoing.dataset.pairRole === 'old') {
+      incoming.classList.add('reveal-in');
+    }
+
+    incoming.classList.add('active');
+
+    // Teamfoto-animatie opnieuw laten afspelen als je (terug) op de laatste dia komt
+    if (incoming.id === 'finalSlide') {
+      incoming.querySelectorAll('.team-card').forEach(card => {
+        card.style.animation = 'none';
+        void card.offsetWidth; // force reflow
+        card.style.animation = null;
+      });
+    }
+
+    // Progress bar bijwerken
+    const progress = ((current + 1) / slides.length) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+  }
+  function nextSlide() { showSlide(current + 1); }
+  function prevSlide() { showSlide(current - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Muisbediening: linkerklik = volgende, rechterklik = vorige
+  document.addEventListener('click', (e) => {
+    nextSlide();
+  });
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    prevSlide();
+  });
+
+  showSlide(0);
+</script>
+
+</body>
+</html>
