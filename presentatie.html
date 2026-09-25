@@ -75,6 +75,10 @@
   .box li { font-size: 1em; margin-bottom: 6px; }
   .box .disclaimer { font-size: 0.9em; color: #f2c94c; font-style: italic; margin-top: 8px; }
 
+  .box .theme-audience {
+	  font-size: 0.65em; color: #a8c0dc; font-style: italic; margin: -4px 0 12px 0; text-align: center;
+  }
+
   /* Volledig scherm variant voor de losse "Wat betekent dit voor ons"-dia's */
   .single-box {
     flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
@@ -232,26 +236,26 @@
 <!-- SLIDE 1: TITEL -->
 <div class="slide active">
   <h1>🚀 Van vrachtschip naar containers</h1>
-  <p class="subtitle">Onze nieuwe software & website — een frisse, moderne basis</p>
-  <p style="margin-top:60px; color:#a8c0dc; font-size:1.6em;">Gepresenteerd door: Pascal van den Bos — Developer</p>
+  <p class="subtitle">Onze nieuwe software & website - een frisse, moderne basis</p>
+  <p style="margin-top:60px; color:#a8c0dc; font-size:1.6em;">Gepresenteerd door: Pascal van den Bos</p>
 </div>
 
 <!-- SLIDE 2: OPENING / WAARDERING -->
 <div class="slide">
   <h2>Waar we vandaan komen</h2>
-  <p>Onze huidige applicaties — deels in VB.NET — hebben jarenlang hun werk goed gedaan en doen dat nog steeds.</p>
+  <p>Onze huidige applicaties - deels in VB.NET - hebben jarenlang hun werk goed gedaan en doen dat nog steeds.</p>
   <p>Maar ze worden opgeleverd als <span class="highlight">één groot geheel</span>: alles zit aan elkaar vast.</p>
   <ul>
     <li>Een kleine aanpassing aan één onderdeel raakt al snel het geheel</li>
     <li>Bij uitrol bouwen we in feite één enorm <span class="highlight">vrachtschip</span>, vol met alles aan boord</li>
-    <li>Voor elke klant moeten we dat schip opnieuw beladen: alle instellingen handmatig verzamelen en inregelen — dat kost tijd</li>
+    <li>Voor elke klant moeten we dat schip opnieuw beladen: alle instellingen handmatig verzamelen en inregelen - dat kost tijd</li>
   </ul>
 </div>
 
 <!-- SLIDE 3: DE NIEUWE SITUATIE (vrachtschip -> containers) -->
 <div class="slide">
   <h2>🚢 → 📦 Waar we naartoe bouwen</h2>
-  <p>In de nieuwe opzet bouwen we onze containers als <span class="highlight">vaste, herbruikbare sjablonen</span> — precies één keer gebouwd, goed getest.</p>
+  <p>In de nieuwe opzet bouwen we onze containers als <span class="highlight">vaste, herbruikbare sjablonen</span> - precies één keer gebouwd, goed getest.</p>
   <ul>
     <li>Die sjablonen kunnen we simpelweg <span class="highlight">kopiëren/klonen</span> voor elke klant</li>
     <li>Klantspecifieke instellingen worden niet meer ingebakken, maar <span class="highlight">van buitenaf gevoerd</span></li>
@@ -263,20 +267,20 @@
 <div class="slide">
   <h2>De spelers in dit verhaal 🚢</h2>
   <ul>
-    <li>🏢 <b>Unit4 CODA</b> — extern pakhuis waar onze financiële gegevens liggen</li>
-    <li>🔌 Tot nu toe: een <span class="highlight">vaste kade-lijn</span> naar dat pakhuis — deze wordt (om diverse redenen) binnenkort <span class="highlight">verbroken</span></li>
-    <li>🌐 <b>Blazor-website</b> — ons loket, waar iedereen mee werkt (eigen container)</li>
-    <li>🚚 <b>Sync Engine</b> — onze eigen vrachtwagen die zelf de gegevens ophaalt zodra de lijn wegvalt</li>
+    <li>🏢 <b>Unit4 CODA</b> - extern pakhuis waar onze financiële gegevens liggen</li>
+    <li>🔌 Tot nu toe: een <span class="highlight">vaste kade-lijn</span> naar dat pakhuis - deze wordt (om diverse redenen) binnenkort <span class="highlight">verbroken</span></li>
+    <li>🌐 <b>Blazor-website</b> - ons loket, waar iedereen mee werkt (eigen container)</li>
+    <li>🚚 <b>Sync Engine</b> - onze eigen vrachtwagen die zelf de gegevens ophaalt zodra de lijn wegvalt</li>
     <li>📦 In totaal <b>12 containers</b>: 10 met verwerkings-engines, 1 met de Blazor FrontEnd en 1 met de Bank Statement API</li>
-    <li>✅ Twee engines zijn al vervangen door nieuwere machines: <b>BSPM Read Engine</b> en <b>Filter Engine</b>. <b>Calculate Match Engine</b> volgt binnenkort</li>
+    <li>✅ Twee engines zijn al vervangen door nieuwere machines: <b>Doc Posting Engine</b> en <b>Filter Engine</b>. <b>Calculate Match Engine</b> volgt binnenkort</li>
   </ul>
 </div>
 
 <!-- SLIDE 5: DE FABRIEKJES ANALOGIE -->
 <div class="slide">
   <h2>🏭 Elke container is een klein fabriekje</h2>
-  <p>Elke container is niet zomaar een doos — er zit een <span class="highlight">klein fabriekje</span> in. Dat fabriekje doet één ding, en doet dat goed.</p>
-  <p>Maar de fabriekjes praten <b>niet rechtstreeks</b> met elkaar. Ze zetten hun halffabricaat neer in een <span class="highlight">groot magazijn</span> — de Crescendo database.</p>
+  <p>Elke container is niet zomaar een doos - er zit een <span class="highlight">klein fabriekje</span> in. Dat fabriekje doet één ding, en doet dat goed.</p>
+  <p>Maar de fabriekjes praten <b>niet rechtstreeks</b> met elkaar. Ze zetten hun halffabricaat neer in een <span class="highlight">groot magazijn</span> - de Crescendo database.</p>
   <p>Daar ligt het klaar totdat het volgende fabriekje het oppikt, ermee verder werkt, en het resultaat weer terugzet in het magazijn.</p>
 </div>
 
@@ -294,16 +298,16 @@
       <div class="arch-db">🏭 Crescendo<br>Database<br><span style="font-weight:400;font-size:0.8em;">(het magazijn)</span></div>
       <div class="arch-flow-arrow">→</div>
       <div class="arch-col">
-        <div class="arch-node engine done"><span class="engine-icon">🏭</span> BSPM Read Engine ✅</div>
+        <div class="arch-node engine done"><span class="engine-icon">🏭</span> Doc Post Engine ✅</div>
         <div class="arch-node engine done"><span class="engine-icon">🏭</span> Filter Engine ✅</div>
         <div class="arch-node engine"><span class="engine-icon">🏭</span> Calculate Match Engine 🔜</div>
-        <div class="arch-node engine"><span class="engine-icon">🏭</span> Doc Post Engine</div>
+        <div class="arch-node engine"><span class="engine-icon">🏭</span> BSPM Read Engine</div>
         <div class="arch-node engine"><span class="engine-icon">🏭</span> Matching / Undo / Update (en overige engines)</div>
       </div>
     </div>
   </div>
   <div class="callout-row">
-    <div class="callout"><b>1. Eén gedeeld magazijn</b><br>Alles praat via de Crescendo database — geen directe koppelingen onderling, dat maakt vervanging veilig.</div>
+    <div class="callout"><b>1. Eén gedeeld magazijn</b><br>Alles praat via de Crescendo database - geen directe koppelingen onderling, dat maakt vervanging veilig.</div>
     <div class="callout"><b>2. Eén voor één vervangen</b><br>Omdat alles via dezelfde database loopt, draaien oude en nieuwe engines gewoon naast elkaar tijdens de overgang.</div>
     <div class="callout"><b>3. Geen live gegraaf meer in CODA</b><br>Voorheen: joins over de lijn tussen interne en externe data → traag. Nu: alles staat lokaal klaar dankzij Sync.</div>
   </div>
@@ -312,12 +316,12 @@
 <!-- SLIDE 7: SYNC ENGINE DETAIL -->
 <div class="slide">
   <h2>🔄 Waarom de Sync Engine?</h2>
-  <p><strong>Vroeger:</strong> gegevens werden live opgehaald uit de externe CODA-database via een vaste lijn — met joins tussen interne en externe data. Dat kan traag zijn en is afhankelijk van het netwerk.</p>
-  <p><strong>Nu:</strong> we houden een eigen, lokale kopie van de benodigde gegevens bij, netjes gesynchroniseerd — en klaar voor als de lijn ooit wegvalt.</p>
+  <p><strong>Vroeger:</strong> gegevens werden live opgehaald uit de externe CODA-database via een vaste lijn - met joins tussen interne en externe data. Dat kan traag zijn en is afhankelijk van het netwerk.</p>
+  <p><strong>Nu:</strong> we houden een eigen, lokale kopie van de benodigde gegevens bij, netjes gesynchroniseerd - en klaar voor als de lijn ooit wegvalt.</p>
   <ul>
-    <li>⚡ Sneller — gegevens staan al lokaal klaar</li>
-    <li>📦 Overzichtelijker — alles bij elkaar in plaats van verspreid</li>
-    <li>🛡️ Stabieler — minder afhankelijk van de live-koppeling</li>
+    <li>⚡ Sneller - gegevens staan al lokaal klaar</li>
+    <li>📦 Overzichtelijker - alles bij elkaar in plaats van verspreid</li>
+    <li>🛡️ Stabieler - minder afhankelijk van de live-koppeling</li>
   </ul>
 </div>
 
@@ -363,14 +367,14 @@
 
 <!-- Scherm: Filter Rules overzicht -->
 <div class="slide shot-slide" data-pair="3" data-pair-role="old">
-  <h2>Filter Rules — overzicht <span class="badge old">OUD</span></h2>
+  <h2>Filter Rules - overzicht <span class="badge old">OUD</span></h2>
   <div class="shot-full">
     <img src="Screenshot CrescendoWeb 3.png" alt="Oud - Filter Rules overzicht" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 3<br>(Filter Rules overzicht, oud)</div>
   </div>
 </div>
 <div class="slide shot-slide" data-pair="3" data-pair-role="new">
-  <h2>Filter Rules — overzicht <span class="badge new">NIEUW</span></h2>
+  <h2>Filter Rules - overzicht <span class="badge new">NIEUW</span></h2>
   <div class="shot-full">
     <img src="Screenshot Blazor 3.png" alt="Nieuw - Filter Rules overzicht" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot Blazor 3<br>(Filter Rules overzicht, nieuw)</div>
@@ -379,14 +383,14 @@
 
 <!-- Scherm: Filter Rules detail -->
 <div class="slide shot-slide" data-pair="2" data-pair-role="old">
-  <h2>Filter Rules — detail <span class="badge old">OUD</span></h2>
+  <h2>Filter Rules - detail <span class="badge old">OUD</span></h2>
   <div class="shot-full">
     <img src="Screenshot CrescendoWeb 2.png" alt="Oud - Filter Rules detail" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 2<br>(Filter Rules detail, oud)</div>
   </div>
 </div>
 <div class="slide shot-slide" data-pair="2" data-pair-role="new">
-  <h2>Filter Rules — detail <span class="badge new">NIEUW</span></h2>
+  <h2>Filter Rules - detail <span class="badge new">NIEUW</span></h2>
   <div class="shot-full">
     <img src="Screenshot Blazor 2.png" alt="Nieuw - Filter Rules detail" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot Blazor 2<br>(Filter Rules detail, nieuw)</div>
@@ -411,14 +415,14 @@
 
 <!-- Scherm: Selector Masters (ingevuld) -->
 <div class="slide shot-slide" data-pair="6" data-pair-role="old">
-  <h2>Selector Masters — ingevuld <span class="badge old">OUD</span></h2>
+  <h2>Selector Masters - ingevuld <span class="badge old">OUD</span></h2>
   <div class="shot-full">
     <img src="Screenshot CrescendoWeb 6.png" alt="Oud - Selector Masters ingevuld" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot CrescendoWeb 6<br>(Selector Masters ingevuld, oud)</div>
   </div>
 </div>
 <div class="slide shot-slide" data-pair="6" data-pair-role="new">
-  <h2>Selector Masters — ingevuld <span class="badge new">NIEUW</span></h2>
+  <h2>Selector Masters - ingevuld <span class="badge new">NIEUW</span></h2>
   <div class="shot-full">
     <img src="Screenshot Blazor 6.png" alt="Nieuw - Selector Masters ingevuld" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot Blazor 6<br>(Selector Masters ingevuld, nieuw)</div>
@@ -451,7 +455,7 @@
 
 <!-- SLIDE: Extra - Inklapbaar menu (animatie) -->
 <div class="slide shot-slide" data-pair="7" data-pair-role="new">
-  <h2>📐 Inklapbaar menu — vloeiende animatie</h2>
+  <h2>📐 Inklapbaar menu - vloeiende animatie</h2>
   <div class="shot-full">
     <img src="Screenshot Blazor Extra 3.png" alt="Menu animatie" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="ph" style="display:none;">📷 Screenshot Blazor Extra 3<br>(menu animatie)</div>
@@ -472,7 +476,7 @@
 <!-- TESTEN INTRO -->
 <div class="slide">
   <h2>🚢 Hoe weten we dat het schip goed de zee op kan?</h2>
-  <p>Op een scheepswerf wordt niet pas bij de proefvaart gekeken of alles goed zit — er wordt op <span class="highlight">drie niveaus</span> gekeurd, van klein onderdeel tot complete proefvaart.</p>
+  <p>Op een scheepswerf wordt niet pas bij de proefvaart gekeken of alles goed zit - er wordt op <span class="highlight">drie niveaus</span> gekeurd, van klein onderdeel tot complete proefvaart.</p>
 </div>
 
 <!-- DE 3 TESTEN -->
@@ -502,7 +506,7 @@
   <h2>🤖 Geautomatiseerd, in kleine stappen</h2>
   <p>Onze tests zijn zoveel mogelijk <span class="highlight">geautomatiseerd</span> en gaan vanzelf af zodra we een stukje software opleveren.</p>
   <ul>
-    <li>We leveren in <span class="highlight">kleine, incrementele brokken</span> op — geen grote big-bang releases</li>
+    <li>We leveren in <span class="highlight">kleine, incrementele brokken</span> op - geen grote big-bang releases</li>
     <li>Elke wijziging wordt bekeken door <span class="highlight">minimaal één andere developer</span>, ook vanuit onze <span class="highlight">SOC1</span>-verplichtingen</li>
     <li>Dat vier-ogen-principe + geautomatiseerde tests vormen samen onze eerste verdedigingslinie</li>
   </ul>
@@ -513,9 +517,9 @@
   <h2>🏗️ Een solide basis voor de toekomst</h2>
   <p>Deze automatisering verhoogt de betrouwbaarheid van alles wat we nu toevoegen, en legt een <span class="highlight">solide fundament</span> voor later.</p>
   <ul>
-    <li>Zodra alle engines zijn omgezet, volgt een grote <span class="highlight">refactor-slag</span> — de tests vangen dan onbedoelde bijeffecten op</li>
-    <li>Omwille van tijd en doorloop maken we soms keuzes waar we later op terugkomen — ook als het straks écht in productie draait</li>
-    <li>Eerste doel: alles kunnen wat de oude engines ook konden — tenzij iets écht overbodig of zeer klantspecifiek is</li>
+    <li>Zodra alle engines zijn omgezet, volgt een grote <span class="highlight">refactor-slag</span> - de tests vangen dan onbedoelde bijeffecten op</li>
+    <li>Omwille van tijd en doorloop maken we soms keuzes waar we later op terugkomen - ook als het straks écht in productie draait</li>
+    <li>Eerste doel: alles kunnen wat de oude engines ook konden - tenzij iets écht overbodig of zeer klantspecifiek is</li>
     <li>Steeds met <span class="highlight">backward compatibility</span> in gedachten, en de oude engines <span class="highlight">één voor één</span> vervangen</li>
   </ul>
 </div>
@@ -523,69 +527,82 @@
 <!-- AUTOMATISCH VS HANDMATIG TESTEN -->
 <div class="slide">
   <h2>⚖️ Automatisch vs. handmatig testen</h2>
-  <p>Automatisch testen verlaagt de tijd die we aan <span class="highlight">handmatig testen</span> kwijt zijn — dat hoeft nu minder frequent.</p>
+  <p>Automatisch testen verlaagt de tijd die we aan <span class="highlight">handmatig testen</span> kwijt zijn - dat hoeft nu minder frequent.</p>
   <ul>
     <li>Het is <span class="highlight">(nog) geen vervanging</span> van handmatig testen: veel kennis zit nog in de hoofden van mensen, en niet alles is al geautomatiseerd</li>
-    <li>Het schrijven van betrouwbare tests kost ook tijd — tijd die een developer dan niet aan nieuwe features besteedt</li>
+    <li>Het schrijven van betrouwbare tests kost ook tijd - tijd die een developer dan niet aan nieuwe features besteedt</li>
     <li>Een bewuste balans, geen wondermiddel</li>
   </ul>
 </div>
 
-<!-- WAT BETEKENT DIT VOOR ONS — 4 losse dia's -->
+<!-- WAT BETEKENT DIT VOOR ONS - 4 losse dia's -->
 
+<!-- <div class="slide"> -->
+  <!-- <h2>Wat betekent dit voor ons?</h2> -->
+  <!-- <div class="single-box"> -->
+    <!-- <span class="icon-big">💼</span> -->
+    <!-- <h3>Sales &amp; Management</h3> -->
+    <!-- <ul> -->
+      <!-- <li>Developers hoeven zich niet meer bezig te houden met onderhoud van oude, verweven onderdelen - er kan <b>gericht</b> verbeterd of uitgebreid worden in één specifiek onderdeel, zonder de rest te raken</li> -->
+      <!-- <li>Het doorknippen van de vaste lijn met Unit4 CODA maakt ons <b>minder afhankelijk</b> van een andere partij - meer grip in eigen hand</li> -->
+      <!-- <li>Dit betekent ook een <b>voorspelbaardere roadmap</b> richting klanten - een verbetering vragen voor bijvoorbeeld alleen de Filter Engine hoeft niet meer te wachten op de rest van het systeem</li> -->
+    <!-- </ul> -->
+    <!-- <p class="disclaimer">Disclaimer: het verwerken van data (via Sync) geeft op zichzelf weer andere uitdagingen. De communicatie naar Unit4 heeft momenteel bekende performance issues.</p> -->
+  <!-- </div> -->
+<!-- </div> -->
+
+<!-- <div class="slide"> -->
+  <!-- <h2>Wat betekent dit voor ons?</h2> -->
+  <!-- <div class="single-box"> -->
+    <!-- <span class="icon-big">🧑‍💻</span> -->
+    <!-- <h3>Functioneel consultants</h3> -->
+    <!-- <ul> -->
+      <!-- <li>Een <b>moderne webapplicatie</b>: minder klikken, overzichtelijker schermen</li> -->
+      <!-- <li>Minder star vastgehouden aan het originele ontwerp en gebruik van Unit4 - meer ruimte voor een prettige, eigen gebruikerservaring</li> -->
+      <!-- <li>Ook de (eind)gebruikers zullen het nieuwe ontwerp als <b>prettiger ervaren</b> - het ziet er frisser en moderner uit, en sluit beter aan bij wat ze in het dagelijks leven van andere apps gewend zijn</li> -->
+    <!-- </ul> -->
+  <!-- </div> -->
+<!-- </div> -->
+
+<!-- <div class="slide"> -->
+  <!-- <h2>Wat betekent dit voor ons?</h2> -->
+  <!-- <div class="single-box"> -->
+    <!-- <span class="icon-big">🏗️</span> -->
+    <!-- <h3>Technisch applicatiebeheer</h3> -->
+    <!-- <ul> -->
+      <!-- <li>Nu: het samenstellen van een klant-omgeving duurt lang - te vergelijken met het <b>opnieuw beladen van een heel vrachtschip</b> per klant</li> -->
+      <!-- <li>Straks: onze set containers, als vaste sjablonen simpelweg <b>gekopieerd/gekloond</b>, met instellingen die er van buitenaf worden ingevoerd</li> -->
+      <!-- <li>Resultaat: veel <b>kortere doorlooptijden</b> bij het uitrollen naar klanten - en meer ruimte om zich te richten op <b>waarde toevoegen</b> bij de klant, in plaats van tijd te verliezen aan handmatig samenstellen</li> -->
+    <!-- </ul> -->
+  <!-- </div> -->
+<!-- </div> -->
+
+<!-- <div class="slide"> -->
+  <!-- <h2>Wat betekent dit voor ons?</h2> -->
+  <!-- <div class="single-box"> -->
+    <!-- <span class="icon-big">👨‍💻</span> -->
+    <!-- <h3>Techniek / Developers</h3> -->
+    <!-- <ul> -->
+      <!-- <li>Kleiner en <b>modulair</b> = sneller ontwikkelen, minder gedoe</li> -->
+      <!-- <li>Bij een probleem is meteen duidelijk <b>in welke container ("fabriek")</b> het misgaat - veel minder zoekwerk</li> -->
+      <!-- <li>Aanpassingen zijn te doen <b>zonder dat iets anders omvalt</b></li> -->
+      <!-- <li>In combinatie met geautomatiseerde tests: sneller zekerheid dat alles nog werkt na een wijziging</li> -->
+    <!-- </ul> -->
+  <!-- </div> -->
+<!-- </div> -->
+
+<!-- WAT BETEKENT DIT VOOR ONS -->
+<!-- WAT BETEKENT DIT VOOR ONS -->
 <div class="slide">
   <h2>Wat betekent dit voor ons?</h2>
-  <div class="single-box">
-    <span class="icon-big">💼</span>
-    <h3>Sales &amp; Management</h3>
-    <ul>
-      <li>Developers hoeven zich niet meer bezig te houden met onderhoud van oude, verweven onderdelen — er kan <b>gericht</b> verbeterd of uitgebreid worden in één specifiek onderdeel, zonder de rest te raken</li>
-      <li>Het doorknippen van de vaste lijn met Unit4 CODA maakt ons <b>minder afhankelijk</b> van een andere partij — meer grip in eigen hand</li>
-      <li>Dit betekent ook een <b>voorspelbaardere roadmap</b> richting klanten — een verbetering vragen voor bijvoorbeeld alleen de Filter Engine hoeft niet meer te wachten op de rest van het systeem</li>
-    </ul>
-    <p class="disclaimer">Disclaimer: het verwerken van data (via Sync) geeft op zichzelf weer andere uitdagingen. De communicatie naar Unit4 heeft momenteel bekende performance issues.</p>
-  </div>
+  <ul>
+    <li>⚡ <b>Sneller kunnen schakelen</b> - kleiner en modulair is sneller ontwikkelen en minder onderhouden</li>
+    <li>🎯 <b>Minder zoekwerk, meer zekerheid</b> - bij een probleem is meteen duidelijk in welke container het misgaat</li>
+    <li>🛠️ <b>Eenvoudiger onderhoud</b> - aanpassingen doen zonder dat iets anders omvalt, met zekerheid van geautomatiseerde tests</li>
+    <li>🔓 <b>Meer grip in eigen hand</b> - minder afhankelijkheid van Unit4, en de mogelijkheid om waarde toe te voegen in ons eigen "magazijn"</li>
+  </ul>
 </div>
 
-<div class="slide">
-  <h2>Wat betekent dit voor ons?</h2>
-  <div class="single-box">
-    <span class="icon-big">🧑‍💻</span>
-    <h3>Functioneel consultants</h3>
-    <ul>
-      <li>Een <b>moderne webapplicatie</b>: minder klikken, overzichtelijker schermen</li>
-      <li>Minder star vastgehouden aan het originele ontwerp en gebruik van Unit4 — meer ruimte voor een prettige, eigen gebruikerservaring</li>
-      <li>Ook de (eind)gebruikers zullen het nieuwe ontwerp als <b>prettiger ervaren</b> — het ziet er frisser en moderner uit, en sluit beter aan bij wat ze in het dagelijks leven van andere apps gewend zijn</li>
-    </ul>
-  </div>
-</div>
-
-<div class="slide">
-  <h2>Wat betekent dit voor ons?</h2>
-  <div class="single-box">
-    <span class="icon-big">🏗️</span>
-    <h3>Technisch applicatiebeheer</h3>
-    <ul>
-      <li>Nu: het samenstellen van een klant-omgeving duurt lang — te vergelijken met het <b>opnieuw beladen van een heel vrachtschip</b> per klant</li>
-      <li>Straks: onze set containers, als vaste sjablonen simpelweg <b>gekopieerd/gekloond</b>, met instellingen die er van buitenaf worden ingevoerd</li>
-      <li>Resultaat: veel <b>kortere doorlooptijden</b> bij het uitrollen naar klanten — en meer ruimte om zich te richten op <b>waarde toevoegen</b> bij de klant, in plaats van tijd te verliezen aan handmatig samenstellen</li>
-    </ul>
-  </div>
-</div>
-
-<div class="slide">
-  <h2>Wat betekent dit voor ons?</h2>
-  <div class="single-box">
-    <span class="icon-big">👨‍💻</span>
-    <h3>Techniek / Developers</h3>
-    <ul>
-      <li>Kleiner en <b>modulair</b> = sneller ontwikkelen, minder gedoe</li>
-      <li>Bij een probleem is meteen duidelijk <b>in welke container ("fabriek")</b> het misgaat — veel minder zoekwerk</li>
-      <li>Aanpassingen zijn te doen <b>zonder dat iets anders omvalt</b></li>
-      <li>In combinatie met geautomatiseerde tests: sneller zekerheid dat alles nog werkt na een wijziging</li>
-    </ul>
-  </div>
-</div>
 
 <!-- AFSLUITING -->
 <div class="slide" id="finalSlide">
